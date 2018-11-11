@@ -1,5 +1,5 @@
 <?php
-
+/*
 //Задача 1
 echo 'Задача 1</br>';
 $x = 1;
@@ -115,3 +115,165 @@ elseif ($age>=1 && $age<=17) {
     
     echo '</br>Неизвестный возраст</br>';
  }
+*/
+//  $s=0;
+// $n=10;
+// for ($i=1,$j=2; $i<$n; $i++, $j++) {
+//     $s+= $i*$j;
+//     echo "<br/>".$s;
+// }
+
+
+//  echo "<table>";
+//     echo "<tr><th style='border:1px solid'>Номер</th><th style='border:1px solid'>Число</th></tr>";
+//     for ($i=0;$i<10;$i++) {
+// //$color="white";
+//         if ($i%2) {
+//             $color="#ccc";
+
+//         } else $color="rgb(122, 128, 126)";
+//         echo "<tr style='background-color:$color;'>";
+
+//         for ($j=0; $j<2; $j++) { 
+
+
+//  //   echo $j%2;
+//            echo "<td style='border:1px solid'>";
+//            $a = mt_rand();
+
+//            echo "$a</td>";
+//        }   
+//        echo "</tr>";
+//    }
+//    echo "</table>";
+
+
+
+
+//  echo "<table>";
+//  $count=10;
+//     echo "<tr><th style='border:1px solid'>Номер</th><th style='border:1px solid' colspan=$count>Число</th></tr>";
+//     for ($i=0;$i<10;$i++) {
+// //$color="white";
+//         if ($i%2) {
+//             $color="#ccc";
+
+//         } else $color="rgb(122, 128, 126)";
+//         echo "<tr style='background-color:$color;'>";
+
+//         for ($j=0; $j<$count; $j++) { 
+
+
+//  //   echo $j%2;
+//            echo "<td style='border:1px solid'>";
+//            $a = mt_rand();
+
+//            echo "$a</td>";
+//        }   
+//        echo "</tr>";
+//    }
+//    echo "</table>";
+
+
+
+
+
+//    echo "<table>";
+//    $color1=255;
+//    $color2=255;
+//    $color3=255;
+//    echo "<tr><th style='border:1px solid'>Номер</th><th style='border:1px solid'>Число</th></tr>";
+//    while ($color1>=0) {
+// //$color="white";
+
+//     $color="rgb($color1, $color2, $color3)";
+
+
+//     echo "<tr style='background-color:$color;'>";
+// //echo " $color1 $color2 $color3";
+//     $color1-=1;
+//     $color2-=1;
+//     $color3-=1;
+
+
+
+//     for ($j=0; $j<2; $j++) { 
+
+
+//  //   echo $j%2;
+//        echo "<td style='border:1px solid'>";
+//        $a = mt_rand();
+
+
+//        echo "$a</td>";
+//    }   
+//    echo "</tr>";
+// }
+// echo "</table>";
+
+
+//книга по алгоритмам Дональд Кнут "Искусство программирования"
+
+
+// Пузырьковая сортировка
+
+// $array = [8,3,5,1,0,0,7,9];
+// $n = count($array);
+// for ($i=0; $i <$n-1; $i++) { 
+//     //echo "$n";
+//     $counter = 0;
+//     for ($j=$n-1; $j > $i ; $j--) { 
+//         if ($array[$j]<$array[$j-1]) {
+
+//             $temp = $array[$j];
+//             $array[$j] = $array[$j-1];
+//             $array[$j-1] = $temp;
+//             $counter++;
+//             echo "перестановка";
+//         } 
+//         echo "$counter<br />";
+//     }
+//     if ($counter==0) {
+//         echo "нет перестановок";
+//         break;
+//     }
+//     var_dump($array);
+// }
+
+// foreach ($array as $value) {
+//     echo $value."<br />";
+// }
+
+
+
+
+
+
+
+//Задачка на GET. Пагинация
+
+define('MP', 10);
+$n = isset($_GET['n'])?intval($_GET['n']):100;
+
+$page = isset($_GET['page'])?intval($_GET['page']):1;
+
+for ($i=1; $i <=$n ; $i++) { 
+    $array[] = "сообщение ".$i;
+}
+
+$firstElement = ($page - 1) * MP;
+$pageArray = array_slice($array, $firstElement, MP);
+
+foreach ($pageArray as $value) {
+    echo $value."<br />";
+}
+
+
+?>
+
+
+
+
+
+
+
