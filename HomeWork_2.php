@@ -201,6 +201,7 @@ $menu =
  }
 
 function chekArray ($array2) {
+
 	$counter=0;
 foreach ($array2 as $key => $value) {
 	if (is_array($value)) {
@@ -211,7 +212,7 @@ foreach ($array2 as $key => $value) {
 	}
 	else {// echo "no array";
 	if ($key==0) {
-	echo $value."<br />";
+	//echo $value."<br />";
 	}
 	
 	//var_dump($value);
@@ -230,8 +231,21 @@ chekArray ($menu);
 
 
 
+$aaa = ["qqq", "sss", "ddd"];
+
+foreach ($aaa as $key) {
+	echo $key[0];
+}
 
 
+$foo = array(
+    1 => "Value1",
+    2 => "Value2",
+    10 => "Value10"
+);
+while($bar = each($foo)){
+    echo $bar[0] . " => " . $bar[1];
+}
 
 
 
