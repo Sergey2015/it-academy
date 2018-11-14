@@ -202,13 +202,15 @@ $menu =
 
 function chekArray ($array2) {
 
-	$counter=0;
+echo "<ul>";
 foreach ($array2 as $key => $value) {
-	if (is_array($value)) {
+	
+		echo "<li><a href='$value[1]'>".$value[0]."</a></li>";
+	if (is_array($value[2])) {
 	//	echo "array";
 	//	echo "key= ".$key;
 	
-		chekArray ($value);
+		chekArray ($value[2]);
 	}
 	else {// echo "no array";
 	if ($key==0) {
@@ -218,9 +220,10 @@ foreach ($array2 as $key => $value) {
 	//var_dump($value);
 }
 }
-
+echo "</ul>";
 	//print_r($array2);
 }
+
 
 chekArray ($menu);
 	
