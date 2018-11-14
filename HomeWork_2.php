@@ -234,46 +234,74 @@ chekArray ($menu);
 
 
 
-$aaa = ["qqq", "sss", "ddd"];
 
-foreach ($aaa as $key) {
-	echo $key[0];
-}
-
-
-$foo = array(
-    1 => "Value1",
-    2 => "Value2",
-    10 => "Value10"
-);
-while($bar = each($foo)){
-    echo $bar[0] . " => " . $bar[1];
-}
 
 
 
 //Доп. задаие 2
 
-$menu = 
-[
-   ["A1", ["ax", "11,37" => ["z", "x", "c"], "aaa", "bbb"]],
+// $menu = 
+// [
+//    ["A1" => ["ax", "11,37" => ["z", "x", "c"], "aaa", "bbb"]],
 
-   ["A2", [10, "20" => ["36,6", "y", "12,5" ], 15]], 
+//    ["A2" => ["10", "20" => ["36,6", "y", "12,5" ], "15"]], 
                               
-   ["A22"],
-   ["A3"],
-   ["A0", ["eee", "aaa", "12", "25,3"]],
-   [5],
-   [1],
-   [3]
-];
+//    ["A22"],
+//    ["A3"],
+//    ["A0" => ["eee", "aaa", "12", "25,3"]],
+//    [5],
+//    [1],
+//    [3]
+// ];
 
-foreach ($menu as $items) {
+
+$menu = array(array("A1" => "ax", 
+                         "11,37" => array("z", "x", "c"),
+                         "aaa",
+                         "bbb"
+                       ),
+               array( "A2" => array(10, 20 => array("36,6", "y", "12,5"), 15) 
+                        
+                       ),
+               array("A22"),
+               array("A3"),
+               array( "A0" => array("eee", "aaa", "12", "25,3"),
+               array("5"),
+               array("1"),
+               array("3"),
+                ));
+
+
+function chekArray2 ($array2) {
+
+echo "<ul>";
+foreach ($array2 as $key => $value) {
 	
-	echo($items[0])."<br />";
+    if (key($value) && !is_array($value))
+        echo "<li>".$value."</li>";
+    elseif (!key($value) && !is_array($value))
+        echo "<li>".$value."</li>";
+
+		
+	if (is_array($value)) {
+	//	echo "array";
+	//	echo "key= ".$key;
 	
+		chekArray2 ($value);
+	}
+	
+}
+echo "</ul>";
+	//print_r($array2);
 }
 
 
+// foreach ($menu as $value) {
+//     if (key($value))
+//         echo key($value).'<br>';
+//     else
+//         echo $value[0].'<br>';
 
+// }
+chekArray2($menu);
 
