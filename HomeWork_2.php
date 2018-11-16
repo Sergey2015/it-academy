@@ -207,8 +207,7 @@ foreach ($array2 as $key => $value) {
 	
 		echo "<li><a href='$value[1]'>".$value[0]."</a></li>";
 	if (is_array($value[2])) {
-	//	echo "array";
-	//	echo "key= ".$key;
+
 	
 		chekArray ($value[2]);
 	}
@@ -227,81 +226,78 @@ echo "</ul>";
 
 chekArray ($menu);
 	
-//var_dump($menu);
-
-
-
-
-
-
-
-
 
 
 //Доп. задаие 2
 
-// $menu = 
-// [
-//    ["A1" => ["ax", "11,37" => ["z", "x", "c"], "aaa", "bbb"]],
 
-//    ["A2" => ["10", "20" => ["36,6", "y", "12,5" ], "15"]], 
-                              
-//    ["A22"],
-//    ["A3"],
-//    ["A0" => ["eee", "aaa", "12", "25,3"]],
-//    [5],
-//    [1],
-//    [3]
-// ];
+$menu =
+[
+    [
+        'A1',
+        [
+            'ax',
+            [
+                '11.37',
+                ['z', 'x', 'c'],
+            ],
+            'aaa',
+            'bbb',
+        ],
+    ],
+    [
+        'A2',
+        [
+            '10',
+            [
+                '20',
+                [
+                    '36.6',
+                    'y',
+                    '12.5'
+                ]
+            ],
+            '15'
+        ],
+    ],
+    ['A22'],
+    ['A3'],
+    ['A0', ['eee', 'aaa', '12', '25.3']],
+    ['5'],
+    ['1'],
+    ['3'],
+    
+];
 
+function chekArray2 ($array) {
 
-$menu = array(array("A1" => "ax", 
-                         "11,37" => array("z", "x", "c"),
-                         "aaa",
-                         "bbb"
-                       ),
-               array( "A2" => array(10, 20 => array("36,6", "y", "12,5"), 15) 
-                        
-                       ),
-               array("A22"),
-               array("A3"),
-               array( "A0" => array("eee", "aaa", "12", "25,3"),
-               array("5"),
-               array("1"),
-               array("3"),
-                ));
+echo '<ul>';
 
-
-function chekArray2 ($array2) {
-
-echo "<ul>";
-foreach ($array2 as $key => $value) {
-	
-    if (key($value) && !is_array($value))
-        echo "<li>".$value."</li>";
-    elseif (!key($value) && !is_array($value))
-        echo "<li>".$value."</li>";
-
-		
-	if (is_array($value)) {
-	//	echo "array";
-	//	echo "key= ".$key;
-	
-		chekArray2 ($value);
-	}
-	
-}
-echo "</ul>";
-	//print_r($array2);
+foreach ($array as $key => $item)
+{
+    echo '<li>'.$item[0].'</li>';
+    if (is_array($item[1]))
+    {
+        chekArray2($item[1]);
+    }
+    //var_dump($item);
 }
 
+echo '</ul>';
+}
 
-// foreach ($menu as $value) {
-//     if (key($value))
-//         echo key($value).'<br>';
-//     else
-//         echo $value[0].'<br>';
-
-// }
 chekArray2($menu);
 
+$value = reset($array);
+
+while ($value !== false)
+
+{
+
+echo $value, '<br/>';
+
+$value = next($array);
+
+}
+
+echo '--------------<br/>';
