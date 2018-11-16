@@ -276,7 +276,7 @@ echo '<ul>';
 foreach ($array as $key => $item)
 {
     echo '<li>'.$item[0].'</li>';
-    if (is_array($item[1]))
+    if (isset($item[1]) && is_array($item[1]))
     {
         chekArray2($item[1]);
     }
@@ -288,16 +288,6 @@ echo '</ul>';
 
 chekArray2($menu);
 
-$value = reset($array);
 
-while ($value !== false)
-
-{
-
-echo $value, '<br/>';
-
-$value = next($array);
-
-}
 
 echo '--------------<br/>';
