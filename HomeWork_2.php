@@ -291,3 +291,7 @@ chekArray2($menu);
 
 
 echo '--------------<br/>';
+
+
+
+echo strlen("йцу");
