@@ -41,23 +41,23 @@ $str = explode("\n", $str);
 echo "<br /><br /><br />Количество абзацев - ".count($str)."<br />";
 
 
-foreach ($str as $key => $value) {
-	//Делим на предложения
-	$str[$key] = explode(". ", $value);
-	foreach ($str[$key] as $key2 => &$value2) {
+foreach ($str as $key => $value) { //перебираем абзацы
+
+	$str[$key] = explode(". ", $value); //Делим на предложения
+	foreach ($str[$key] as $key2 => &$partsOfSentences) { //перебираем предложения
 		echo "<br />?????$value<br />";
-		if (empty($value2)) {
+		if (empty($partsOfSentences)) { //пустые предложения удаляем
 			//echo "!!!!$value";
 			unset($str[$key][$key2]);
 			//unset($value2);
 		}
 	//Создаем массив из предлоений разделенный пробелами
 		//print_r($str[$key][$key2]);
-		echo "4444  55555555";
-	$partsOfSentences[] = explode(" ", $value2);
-	}
-	echo "Количество предложений в абзаце номер ".($key+1)." - ".count($str[$key])."<br />";
-//print_r($str[$key]);
+
+	//$partsOfSentences[] = explode(" ", $value2); //разбиваем предложения пробелами
+		$partsOfSentences = explode(" ", $partsOfSentences); //разбиваем предложения пробелами
+
+		//print_r($str[$key]);
 $k = 0;
 do {
 	//echo "ok";
@@ -65,11 +65,15 @@ do {
 //	$str[$key][$k] = explode(" ", $str[$key][$k]);
 //defineWord(range(0, 9), $str[$key][$k]);
 	//вызываем функцию разделить на символы
-$aaa[] = makeArrayFromSentense($str[$key][$k]);
+$aaa[] = makeArrayFromSentense($partsOfSentences);
 	$k++;
-} while (next($str[$key]));
+} while (next($partsOfSentences));
 
 }
+
+	}
+	echo "Количество предложений в абзаце номер ".($key+1)." - ".count($str[$key])."<br />";
+
  var_dump($str);
 
 function defineWord (array $allowChar, string $sentence) {
@@ -86,12 +90,17 @@ echo "define work";
 
 
 
-function makeArrayFromSentense (string $sentence) {
+function makeArrayFromSentense (array $partsOfSentences) {
 	$i = 0;
 	$aaa[]="";
-while (mb_strimwidth($sentence, $i, 1)) {
-	$aaa[] = mb_strimwidth($sentence, $i, 1);
+	foreach ($partsOfSentences as $key => $value) {
+//echo "$value -----7777777<br />";
+while (mb_strimwidth("$value", $i, 1)) {
+	$aaa[] = mb_strimwidth($value, $i, 1);
 	$i++;
+
+}
+$i = 0;
 }
 return  $aaa;
 }
@@ -104,7 +113,7 @@ foreach ($is_word as $key => $value) {
 	for ($i=0; $i < count($aaa2) ; $i++) {
 		if ($value==$aaa2[$i]) {
 			$word .= $aaa2[$i];
-			echo "$aaa2[$i]<br />";
+		//	echo "$aaa2[$i]<br />";
 		}
 		}
 	}
@@ -112,5 +121,6 @@ foreach ($is_word as $key => $value) {
 
 //echo count($aaa2);
 //var_dump($word);
-//var_dump($aaa);
-var_dump($partsOfSentences);
+//var_dump($str);
+var_dump($str);
+//var_dump($partsOfSentences);
