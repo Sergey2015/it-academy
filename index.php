@@ -14,7 +14,7 @@ $is_word = array_merge(range(0, 9), range("a", "z"), range("A", "Z"));
 //var_dump($array);
 //
 //Делим на абзацы
-
+//
 //Делим на предложения
 // $text = explode("\n", $text);
 // $i = 0;
