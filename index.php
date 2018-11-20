@@ -32,20 +32,39 @@ $is_word = array_merge(range(0, 9), range("a", "z"), range("A", "Z"));
 // }
 // var_dump($text);
 
-$str = 'При выполнении программы 55567 байт-код интерпретируется исполняющей машиной Java. Один и тот же Java-байткод 1111 будет исполняться на любой платформе. Переносимость. Архитектурная независимость - лишь 5354 составная часть переносимости. В отличие от С или С++ в Java не существует понятия "зависимости от реализации", когда речь идет о размерности базовых типов. ';
+$str = 'При выполнении программы 55567 байт-код интерпретируется исполняющей машиной Java. Один и тот же Java-байткод 1111 будет исполняться на любой платформе. Переносимость. Архитектурная независимость - лишь 5354 составная часть переносимости. В отличие от С или С++ в Java не существует понятия "зависимости от реализации", когда речь идет о размерности базовых типов.
+ Один два, три...
+ Четыре пять и шесть. ';
 
-$str = explode(". ", $str);
+//получаем абзацы
+$str = explode("\n", $str);
+echo "<br /><br /><br />Количество абзацев - ".count($str)."<br />";
 
 
 foreach ($str as $key => $value) {
-	$str[$key] = explode("-", $value);
+	//Делим на предложения
+	$str[$key] = explode(". ", $value);
+	foreach ($str[$key] as $key2 => &$value2) {
+		echo "<br />?????$value<br />";
+		if (empty($value2)) {
+			//echo "!!!!$value";
+			unset($str[$key][$key2]);
+			//unset($value2);
+		}
+	//Создаем массив из предлоений разделенный пробелами
+		//print_r($str[$key][$key2]);
+		echo "4444  55555555";
+	$partsOfSentences[] = explode(" ", $value2);
+	}
+	echo "Количество предложений в абзаце номер ".($key+1)." - ".count($str[$key])."<br />";
 //print_r($str[$key]);
 $k = 0;
 do {
-	echo "ok";
+	//echo "ok";
 
 //	$str[$key][$k] = explode(" ", $str[$key][$k]);
 //defineWord(range(0, 9), $str[$key][$k]);
+	//вызываем функцию разделить на символы
 $aaa[] = makeArrayFromSentense($str[$key][$k]);
 	$k++;
 } while (next($str[$key]));
@@ -76,9 +95,22 @@ while (mb_strimwidth($sentence, $i, 1)) {
 }
 return  $aaa;
 }
+$word = "";
+foreach ($is_word as $key => $value) {
+	echo "$value<br />";
+	foreach ($aaa as  $aaa2) {
 
 
+	for ($i=0; $i < count($aaa2) ; $i++) {
+		if ($value==$aaa2[$i]) {
+			$word .= $aaa2[$i];
+			echo "$aaa2[$i]<br />";
+		}
+		}
+	}
+}
 
-
-var_dump($aaa);
-
+//echo count($aaa2);
+//var_dump($word);
+//var_dump($aaa);
+var_dump($partsOfSentences);

@@ -86,7 +86,7 @@ echo '</br>Дополнительные задания</br>';
 //
 //- Присвойте переменной $age произвольное числовое значение
 //
-// 
+//
 //
 //ЗАДАНИЕ 2
 //
@@ -107,12 +107,12 @@ elseif ($age>59) {
 
 }
 elseif ($age>=1 && $age<=17) {
-    
+
     echo '</br>Вам еще рано работать</br>';
 
 }
  else {
-    
+
     echo '</br>Неизвестный возраст</br>';
  }
 */
@@ -134,7 +134,7 @@ elseif ($age>=1 && $age<=17) {
 //         } else $color="rgb(122, 128, 126)";
 //         echo "<tr style='background-color:$color;'>";
 
-//         for ($j=0; $j<2; $j++) { 
+//         for ($j=0; $j<2; $j++) {
 
 
 //  //   echo $j%2;
@@ -142,7 +142,7 @@ elseif ($age>=1 && $age<=17) {
 //            $a = mt_rand();
 
 //            echo "$a</td>";
-//        }   
+//        }
 //        echo "</tr>";
 //    }
 //    echo "</table>";
@@ -161,7 +161,7 @@ elseif ($age>=1 && $age<=17) {
 //         } else $color="rgb(122, 128, 126)";
 //         echo "<tr style='background-color:$color;'>";
 
-//         for ($j=0; $j<$count; $j++) { 
+//         for ($j=0; $j<$count; $j++) {
 
 
 //  //   echo $j%2;
@@ -169,7 +169,7 @@ elseif ($age>=1 && $age<=17) {
 //            $a = mt_rand();
 
 //            echo "$a</td>";
-//        }   
+//        }
 //        echo "</tr>";
 //    }
 //    echo "</table>";
@@ -197,7 +197,7 @@ elseif ($age>=1 && $age<=17) {
 
 
 
-//     for ($j=0; $j<2; $j++) { 
+//     for ($j=0; $j<2; $j++) {
 
 
 //  //   echo $j%2;
@@ -206,7 +206,7 @@ elseif ($age>=1 && $age<=17) {
 
 
 //        echo "$a</td>";
-//    }   
+//    }
 //    echo "</tr>";
 // }
 // echo "</table>";
@@ -219,10 +219,10 @@ elseif ($age>=1 && $age<=17) {
 
 // $array = [8,3,5,1,0,0,7,9];
 // $n = count($array);
-// for ($i=0; $i <$n-1; $i++) { 
+// for ($i=0; $i <$n-1; $i++) {
 //     //echo "$n";
 //     $counter = 0;
-//     for ($j=$n-1; $j > $i ; $j--) { 
+//     for ($j=$n-1; $j > $i ; $j--) {
 //         if ($array[$j]<$array[$j-1]) {
 
 //             $temp = $array[$j];
@@ -230,7 +230,7 @@ elseif ($age>=1 && $age<=17) {
 //             $array[$j-1] = $temp;
 //             $counter++;
 //             echo "перестановка";
-//         } 
+//         }
 //         echo "$counter<br />";
 //     }
 //     if ($counter==0) {
@@ -258,7 +258,7 @@ $n = isset($_GET['n'])?intval($_GET['n']):100;
 
 $page = isset($_GET['page'])?intval($_GET['page']):1;
 
-for ($i=1; $i <=$n ; $i++) { 
+for ($i=1; $i <=$n ; $i++) {
     $array[] = "сообщение ".$i;
 }
 
