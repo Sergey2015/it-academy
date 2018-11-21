@@ -41,24 +41,22 @@ $str = explode("\n", $str);
 echo "<br /><br /><br />Количество абзацев - ".count($str)."<br />";
 
 
-foreach ($str as $key => $value) { //перебираем абзацы
+foreach ($str as $key => $sentence) { //перебираем абзацы
 
-	$str[$key] = explode(". ", $value); //Делим на предложения
-	foreach ($str[$key] as $key2 => &$partsOfSentences) { //перебираем предложения
+	$sentence = explode(". ", $sentence); //Делим на предложения
+	foreach ($sentence as $key2 => &$partsOfSentences) { //перебираем предложения
 		//echo "<br />?????$value<br />";
 		if (empty($partsOfSentences)) { //пустые предложения удаляем
 
-			unset($str[$key][$key2]);
+			unset($sentence[$key2]);
 
 		}
-	//Создаем массив из предлоений разделенный пробелами
-
-
 	//echo "$partsOfSentences<br />";
 		$partsOfSentences = explode(" ", $partsOfSentences); //разбиваем предложения пробелами
 		foreach ($partsOfSentences as $value) {
 			if ($value != null) {
-
+//echo "$value<br />";
+				makeArrayFromSentense($value, $is_word);
 			}
 		}
 
@@ -74,7 +72,7 @@ $k = 0;
 }
 
 
-	echo "Количество предложений в абзаце номер ".($key+1)." - ".count($str[$key])."<br />";
+	echo "Количество предложений в абзаце номер ".($key+1)." - ".count($sentence)."<br />";
 }
  //var_dump($str);
 
@@ -92,24 +90,33 @@ echo "define work";
 
 
 //функция разбиения на символы
-function makeArrayFromSentense (array $partsOfSentences) {
+function makeArrayFromSentense (string $partsOfSentences,array $is_word) {
 	$i = 0;
 	$aaa[]="";
-	//echo "$partsOfSentences<br />";
-	foreach ($partsOfSentences as $key => $value) {
-//echo "$value -----7777777<br />";
-		//if ($value == null) {
-		echo "$value<br />";
-while (mb_strimwidth("$value", $i, 1)) {
 
+		//echo "$partsOfSentences<br />";
+		$symbol = mb_strimwidth("$partsOfSentences", $i, 1);
+while (mb_strimwidth("$partsOfSentences", $i, 1)) {
+echo $partsOfSentences;
+	$aaa[] = $symbol;
+	//echo "$i";
+foreach ($is_word as $validSymbol) {
+	if ($symbol==$validSymbol) {
+	//	echo "symbol - $symbol, validSymbol - $validSymbol<br />";
 
-//	$aaa[] = mb_strimwidth($value, $i, 1);
-//}
-	$i++;
+	}
+
+}
+$i++;
+
 
 }
 $i = 0;
-}
+$aaa = array_diff($aaa, array(''));
+//var_dump($aaa);
+
+
+
 return  $aaa;
 }
 
@@ -133,53 +140,6 @@ return  $aaa;
 //var_dump($word);
 //var_dump($str);
 //var_dump($str);
-var_dump($partsOfSentences);
+//var_dump($partsOfSentences);
 //var_dump($aaa);
 
-function GetInTranslit($string) {
-$replace=array(
-"'"=>"",
-"`"=>"",
-"а"=>"a","А"=>"a",
-"б"=>"b","Б"=>"b",
-"в"=>"v","В"=>"v",
-"г"=>"g","Г"=>"g",
-"д"=>"d","Д"=>"d",
-"е"=>"e","Е"=>"e",
-"ж"=>"zh","Ж"=>"zh",
-"з"=>"z","З"=>"z",
-"и"=>"i","И"=>"i",
-"й"=>"y","Й"=>"y",
-"к"=>"k","К"=>"k",
-"л"=>"l","Л"=>"l",
-"м"=>"m","М"=>"m",
-"н"=>"n","Н"=>"n",
-"о"=>"o","О"=>"o",
-"п"=>"p","П"=>"p",
-"р"=>"r","Р"=>"r",
-"с"=>"s","С"=>"s",
-"т"=>"t","Т"=>"t",
-"у"=>"u","У"=>"u",
-"ф"=>"f","Ф"=>"f",
-"х"=>"h","Х"=>"h",
-"ц"=>"c","Ц"=>"c",
-"ч"=>"ch","Ч"=>"ch",
-"ш"=>"sh","Ш"=>"sh",
-"щ"=>"sch","Щ"=>"sch",
-"ъ"=>"","Ъ"=>"",
-"ы"=>"y","Ы"=>"y",
-"ь"=>"","Ь"=>"",
-"э"=>"e","Э"=>"e",
-"ю"=>"yu","Ю"=>"yu",
-"я"=>"ya","Я"=>"ya",
-"і"=>"i","І"=>"i",
-"ї"=>"yi","Ї"=>"yi",
-"є"=>"e","Є"=>"e"
-);
-return $str=iconv("UTF-8","UTF-8//IGNORE",strtr($string,$replace));
-}
-echo GetInTranslit("привет!");
-header('Content-type: text/html; charset=utf-8');
-$text = 'Привет';
-echo mb_detect_encoding($text); // UTF-8
-echo substr($text,0,1);
