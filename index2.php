@@ -10,6 +10,7 @@ echo "$text";
 //
 
 $is_word = array_merge(range(0, 9), range("a", "z"), range("A", "Z"));
+print_r($is_word);
 //echo "ok";
 //var_dump($array);
 //
@@ -32,7 +33,7 @@ $is_word = array_merge(range(0, 9), range("a", "z"), range("A", "Z"));
 // }
 // var_dump($text);
 
-$str = ' При выполнении программы 55567 байт-код интерпретируется исполняющей машиной Java. Один и тот же Java-байткод 1111 будет исполняться на любой платформе. Переносимость. Архитектурная независимость - лишь 5354 составная часть переносимости. В отличие от С или С++ в Java не существует понятия "зависимости от реализации", когда речь идет о размерности базовых типов.
+$str = ' FOR for При выполнении программы 55567 байт-код интерпретируется исполняющей машиной Java. Один и тот же Java-байткод 1111 будет исполняться на любой платформе. Переносимость. Архитектурная независимость - лишь 5354 составная часть переносимости. В отличие от С или С++ в Java не существует понятия "зависимости от реализации", когда речь идет о размерности базовых типов.
  Один два, три...
  Четыре пять и шесть. ';
 
@@ -94,24 +95,21 @@ function makeArrayFromSentense (string $partsOfSentences,array $is_word) {
 	$i = 0;
 	$aaa[]="";
 
-		//echo "$partsOfSentences<br />";
-		$symbol = mb_strimwidth("$partsOfSentences", $i, 1);
-while (mb_strimwidth("$partsOfSentences", $i, 1)) {
-echo $partsOfSentences;
-	$aaa[] = $symbol;
-	//echo "$i";
+for ($i=0; $i < mb_strlen($partsOfSentences); $i++) {
+//echo	$symbol = mb_strimwidth("$partsOfSentences", $i, 1);
+$symbol = mb_strimwidth("$partsOfSentences", $i, 1);
+$aaa[] = $symbol;
 foreach ($is_word as $validSymbol) {
 	if ($symbol==$validSymbol) {
-	//	echo "symbol - $symbol, validSymbol - $validSymbol<br />";
+		echo "symbol - $symbol, validSymbol - $validSymbol<br />";
 
 	}
+}
+
+
 
 }
-$i++;
 
-
-}
-$i = 0;
 $aaa = array_diff($aaa, array(''));
 //var_dump($aaa);
 
