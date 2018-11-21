@@ -100,7 +100,7 @@ for ($i=0; $i < mb_strlen($partsOfSentences); $i++) {
 $symbol = mb_strimwidth("$partsOfSentences", $i, 1);
 $aaa[] = $symbol;
 foreach ($is_word as $validSymbol) {
-	if ($symbol==$validSymbol) {
+	if ((string)$symbol== (string)$validSymbol) {
 		echo "symbol - $symbol, validSymbol - $validSymbol<br />";
 
 	}
