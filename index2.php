@@ -8,8 +8,9 @@ echo "$text";
 //Выполняем задание (при разбивке по абзацам учтите, что в Windows1251 абзацы разделяются через "\r\n")
 
 //
-
-$is_word = array_merge(range(0, 9), range("a", "z"), range("A", "Z"));
+$space = array(" "); 
+$rus=array('А','Б','В','Г','Д','Е','Ё','Ж','З','И','Й','К','Л','М','Н','О','П','Р','С','Т','У','Ф','Х','Ц','Ч','Ш','Щ','Ъ','Ы','Ь','Э','Ю','Я','а','б','в','г','д','е','ё','ж','з','и','й','к','л','м','н','о','п','р','с','т','у','ф','х','ц','ч','ш','щ','ъ','ы','ь','э','ю','я',' ');
+$is_word = array_merge(range(0, 9), range("a", "z"), range("A", "Z"), $rus, $space);
 print_r($is_word);
 //echo "ok";
 //var_dump($array);
@@ -57,9 +58,16 @@ foreach ($str as $key => $sentence) { //перебираем абзацы
 		foreach ($partsOfSentences as $value) {
 			if ($value != null) {
 //echo "$value<br />";
-				makeArrayFromSentense($value, $is_word);
+  $bbb = makeArrayFromSentense($value, $is_word);
+
+				
 			}
+			
+			
 		}
+		
+	//	 echo "Количество слов в предложении - ".count(explode(" ", $words))."<br />";
+	//	echo("<br />Сдеующее предложение");
 
 
 		//print_r($str[$key]);
@@ -91,31 +99,38 @@ echo "define work";
 
 
 //функция разбиения на символы
-function makeArrayFromSentense (string $partsOfSentences,array $is_word) {
+function makeArrayFromSentense ( $partsOfSentences, $is_word) {
+	$words = "";
 	$i = 0;
 	$aaa[]="";
 
 for ($i=0; $i < mb_strlen($partsOfSentences); $i++) {
-//echo	$symbol = mb_strimwidth("$partsOfSentences", $i, 1);
-$symbol = mb_strimwidth("$partsOfSentences", $i, 1);
+
+$symbol = mb_strimwidth("$partsOfSentences", $i, 1); //mb_substr
+//var_dump($symbol);
+
+
 $aaa[] = $symbol;
+//$words_count = 0;
 foreach ($is_word as $validSymbol) {
-	if ((string)$symbol== (string)$validSymbol) {
-		echo "symbol - $symbol, validSymbol - $validSymbol<br />";
+	if ((string)$symbol == (string)$validSymbol) {
+	//	echo "symbol - $symbol, validSymbol - $validSymbol<br />";
+		//$words[] = $symbol;
+		//$words = implode($words);
+		$words .= $symbol; 
+//var_dump($words);
+	}		
 
-	}
 }
 
-
-
 }
+$words .= " ";
+ print_r($words);
 
 $aaa = array_diff($aaa, array(''));
 //var_dump($aaa);
 
-
-
-return  $aaa;
+return  array($words, $aaa);
 }
 
 
@@ -141,3 +156,25 @@ return  $aaa;
 //var_dump($partsOfSentences);
 //var_dump($aaa);
 
+
+
+// Инициализирую массив допустимых символов и текст
+// Текст преобразую в UTF-8
+// создаю функцию, кторая разбивает текст на абзацы. Принимает текст, возвращает массив абацев
+// создаю функцию, кторая разбивает абзац на предложения. Принимает абзац, возвращает массив абзацев
+// создаю функцию, кторая разбивает предложения на куски (разделитель - пробел). принимает предложение, возвращает массив частей предложения, включая недопустимые символы
+// создаю функцию, кторая разбивает части предложения, включая недопустимые символы на слова. принимает части предложения, возвращает массив слов с валидными символами
+// 
+// Создаю основную функцию, где будут лежать все вышеперечисленные функции
+// Вывод количества  предложений, слов, символов для каждого абзаца будет осуществляться подсчетом элементов возвращаемых массивов.
+// Выделяем жирным первую букву предложений функцией str_replace
+// вот еще 
+// if (!function_exists("mb_str_replace")) 
+{
+    function mb_str_replace($needle, $replace_text, $haystack) {
+        return implode($replace_text, mb_split($needle, $haystack));
+    }
+}
+
+$str = 'привет ВАНЯ';
+echo mb_str_replace('ваня', 'петя', $str);
