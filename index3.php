@@ -179,7 +179,7 @@ for ($i=0; $i < mb_strlen($partsOfSentences); $i++) {
 $symbol = mb_strimwidth("$partsOfSentences", $i, 1); //mb_substr
 //var_dump($symbol);
 
-
+//123
 $aaa[] = $symbol;
 //$words_count = 0;
 foreach ($is_word as $validSymbol) {
