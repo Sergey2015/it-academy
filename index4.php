@@ -1,4 +1,17 @@
 <?php
+
+// $text = "example вася 123";
+// echo $text, '<br>';
+// echo "Количество символов = " . mb_strlen($text) . "<br>";
+// echo "Количество байт = " . strlen($text) . "<br>";
+// for ($i=0; $i < mb_strlen($text); $i++) {
+//     $symbol = mb_substr($text, $i, 1);
+//     echo "$i - '$symbol' HEX: ";
+//     for ($j = 0; $j < strlen($symbol); $j++) {
+//         printf('%02X', ord($symbol[$j]));
+//     }
+//     echo '<br>';
+// }
 $text = file_get_contents('text_windows1251_2.txt');//Считываем полный текст файла в переменную $text
 
 
@@ -47,11 +60,6 @@ echo "------------";
 
 
 
-// echo "------------";
-// var_dump($new_text);
-// echo "------------";
-//var_dump ($paragraph);
-
 function getParagraph (string $text) {
 $paragraph = explode("\n", $text); //получаем абзацы
 $paragraph = array_diff($paragraph, array(''));
@@ -59,20 +67,82 @@ return (array)$paragraph;
 }
 
 function getSentence (string $paragraph) { //Получаем предложения
-$sentences = str_replace(". ", ".. ", $paragraph);
-$sentences = explode(". ", $sentences); //Делим на предложения
-foreach ($sentences as $value) {
-	$replace = "<b>".mb_strimwidth("$value", 0, 1)."</b>"; //mb_substr
-	$sentences = str_replace(mb_strimwidth($value, 0, 1), $replace, $value);
 
-	$replace = array("<span style='color:red';>HTML</span>", "<span style='color:red';>PHP</span>", "<span style='color:red';>ASP</span>", "<span style='color:red';>ASP.NET</span>", "<span style='color:red';>Java</span>");
-	$sentences2 = str_replace(array("HTML", "PHP", "ASP", "ASP.NET", "Java"), $replace, $sentences);
+	var_dump($paragraph);
+
+$sentenses_array=[];
 
 
 
+
+for ($i=0; $i < mb_strlen($paragraph); $i++) {
+	// echo "Длина строки = ".mb_strlen($text)."<br>";
+	// echo $i."<br>";
+	// echo $text[$i]."<br>";
+	// if ($paragraph[$i]==".") {
+	// 	echo "нашли точку";
+	// }
+	// echo "$paragraph[$i]";
+
+//echo "$i<br>";
+//echo mb_substr($paragraph,$i,1);
+//echo "111".mb_strlen("вася 123")."222";
+
+	$currentSymbol = mb_substr($paragraph,$i,1);
+	$nextSymbol = mb_substr($paragraph,$i+1,1);
+//	echo "$nextSymbol<br>";
+
+	if ($currentSymbol=="." || $currentSymbol=="?" || $currentSymbol=="!") {
+
+//echo mb_substr($paragraph, 0, $i);
+		//echo "Нашли в позиции";
+	//	echo "i = $i<br>";
+
+
+		if ($nextSymbol==" " || ($nextSymbol==false && $nextSymbol!=="0") ) {
+//			echo "false";
+			//echo "$i";
+			$left = mb_substr($paragraph, 0, $i+1);
+
+
+ $paragraph = trim(mb_substr($paragraph, $i+1));
+ //echo "параграф=$paragraph<br>";
+ $sentenses_array[] = trim($left);
+//echo "$left<br>";
+		}
+
+
+
+//echo mb_substr($paragraph, 0, $i);
+	}
+
+//$sentenses_array[] = trim($paragraph);
+
+	//echo "$paragraph[$i]";
 }
-return (array)$sentences2;
+if (empty($sentenses_array)) {
+	$sentenses_array = $paragraph;
 }
+var_dump($sentenses_array);
+
+return (array)$sentenses_array;
+}
+
+
+
+// $sentences = explode(". ", $paragraph); //Делим на предложения
+// foreach ($sentences as $value) {
+// 	$replace = "<b>".mb_strimwidth("$value", 0, 1)."</b>"; //mb_substr
+// 	$sentences = str_replace(mb_strimwidth($value, 0, 1), $replace, $value);
+
+// 	$replace = array("<span style='color:red';>HTML</span>", "<span style='color:red';>PHP</span>", "<span style='color:red';>ASP</span>", "<span style='color:red';>ASP.NET</span>", "<span style='color:red';>Java</span>");
+// 	$sentences2 = str_replace(array("HTML", "PHP", "ASP", "ASP.NET", "Java"), $replace, $sentences);
+
+
+
+// }
+// return (array)$sentences2;
+// }
 
 
 function GetPartOfSernetce (string $sentence) {
