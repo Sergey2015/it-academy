@@ -1,33 +1,45 @@
 <?php
 
-function runmodel($request) {
+function runModel($request) {
 $request['command'] ($request); // будет вызвана функция, которая называется по значению параметра
+
 
 }
 
 function create ($request) {
-
 }
 
-function read ($request) {
+
+function read($request) {
+	$pagesCount = 10;
 	$mysqli = connect();
 	$sql = 'SELECT COUNT(*) FROM guestbook';
 	if (!$result=mysqli_query($mysqli, $sql)) {
 		die ('ошибка запроса');
+	}
 		$row = mysqli_fetch_row($result);
 		$itemsCount = $row[0];
 		mysqli_free_result ($result);
 		$pageCounts = ceil($itemsCount/ITEMSPERPAGE);
 		if ($request['page']>$pagesCount) die('Страница не найдена');
 		$firstRow = ($request['page']-1)*ITEMSPERPAGE;
-		$sql = "SELECT FROM guestbook ORDER BY id DESC LIMIT $firstRow, " . ITEMSPERPAGE;
+		$sql = "SELECT * FROM guestbook ORDER BY id DESC LIMIT $firstRow, " . ITEMSPERPAGE;
 		if (!($result=mysqli_query($mysqli,$sql))) {
-			# code...
+			die("не вышло..");
 		}
-	}
 
-	exit();
+		$row2 = mysqli_fetch_row($result);
+		//var_dump($row2);
+	
+		return $row2;
+		
+	
+
+	//exit();
+	
 }
+//read("read");
+
 
 function update ($request) {
 

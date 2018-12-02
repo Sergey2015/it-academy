@@ -7,8 +7,17 @@ $request['id'] = isset($_GET['id'])?intval($_GET["id"]):0;
 
 require $request['model'].'.php';
 
-$data = runModel ($request);
-var_dump($data);
+//echo $request['command'];
+echo $data=runModel($request);
+//echo $data;
+
+//echo $data[2];
+// foreach ($row2 as $value) {
+// 	echo $value[2];
+// }
+var_dump(runModel($request));
+
+
 exit();
 
 ob_start();
