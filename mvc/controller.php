@@ -8,7 +8,8 @@ $request['id'] = isset($_GET['id'])?intval($_GET["id"]):0;
 require $request['model'].'.php';
 
 //echo $request['command'];
-echo $data=runModel($request);
+ $data=runModel($request);
+var_dump($data);
 //echo $data;
 
 //echo $data[2];

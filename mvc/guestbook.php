@@ -1,9 +1,9 @@
 <?php
 
 function runModel($request) {
-$request['command'] ($request); // будет вызвана функция, которая называется по значению параметра
+$sss = $request['command'] ($request); // будет вызвана функция, которая называется по значению параметра
 
-
+return $sss;
 }
 
 function create ($request) {
@@ -28,9 +28,11 @@ function read($request) {
 			die("не вышло..");
 		}
 
+
+
 		$row2 = mysqli_fetch_row($result);
 		//var_dump($row2);
-	
+		
 		return $row2;
 		
 	
